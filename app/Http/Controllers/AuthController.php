@@ -33,7 +33,7 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => $request['password']
         ]);
-
+                 return view('login');
     }
     public function loginuser(Request $request)
     {
