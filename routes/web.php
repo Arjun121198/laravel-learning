@@ -18,15 +18,16 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::post('/registeruser', [AuthController::class, 'registeruser']);
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/loginuser', [AuthController::class, 'loginuser']);
-Route::get('/home', [AuthController::class, 'home']);
-Route::get('/form', [FormController::class, 'form']);
-Route::post('/formin', [FormController::class, 'formin']);
-Route::get('/user', [FormController::class, 'user']);
-Route::get('/delete/{id}', [FormController::class, 'delete']);
-Route::get('/edit/{id}', [FormController::class, 'showdata']);
-Route::post('/edit', [FormController::class, 'update']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
+Route::group(['middleware'=>['AuthCheck']], function(){
+    Route::get('/home', [AuthController::class, 'home']);
+    Route::get('/form', [FormController::class, 'form']);
+    Route::post('/formin', [FormController::class, 'formin']);
+    Route::get('/user', [FormController::class, 'user']);
+    Route::get('/delete/{id}', [FormController::class, 'delete']);
+    Route::get('/edit/{id}', [FormController::class, 'showdata']);
+    Route::post('/edit', [FormController::class, 'update']);    
+});
 
 
 
