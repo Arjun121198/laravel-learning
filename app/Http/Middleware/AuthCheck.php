@@ -20,10 +20,6 @@ class AuthCheck
         {
          return redirect('login')->with('fail','you must be logged in');   
         }
-        // if(session()->has('user_id'))
-        // {
-        //     return redirect('/home');
-        // }
         return $next($request);
 
     }

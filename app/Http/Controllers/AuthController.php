@@ -43,7 +43,6 @@ class AuthController extends Controller
       ]);
 
       $user = Register::where('email',$request->email)->first();
-    //   dd($user->id);
        if(!$user)
       {
         return back()->with('fail','We do not recognize your email');
