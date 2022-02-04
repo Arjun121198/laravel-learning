@@ -18,11 +18,6 @@ class AuthController extends Controller
     {
         return view('login');
     }    
-    public function home()
-    {
-        return view('home');
-    }
-
 
     public function registeruser(Request $request)
     {
@@ -31,16 +26,14 @@ class AuthController extends Controller
             'email' => 'required|email|unique:registers',
             'password' => 'required|alphaNum|min:5|max:12'
         ]);
-  
-        $name = $request->name;
-        $email = $request->email;
-        $password = $request->password;
-         Register::create([
+       $user = Register::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
         ]);
-                 return view('home');
+        $request->session()->put('user_id',$user->id);
+
+        return redirect('/home')->with('success','Registered Successfully');
     }
     public function loginuser(Request $request)
     {
@@ -62,7 +55,8 @@ class AuthController extends Controller
        }
        if(Hash::check($request->password,$user->password))
        {
-        $request->Session()->put('loginuser',$user->id);
+        $request->session()->put('user_id',$user->id);
+        dd(session()->get('user_id'));
         return redirect('home');
        }
        else
@@ -70,16 +64,20 @@ class AuthController extends Controller
            return back()->with('fail','password is incorrect');
 
        }
-    //   if(isset($user))
-    //   { 
-    //       return view('home');
-
-    //   }
-    //   else
-    //   {
-    //     return back()->with('error','wrong Login Details');
-    //   }
     }
 
+    public function home()
+    {
+        return view('home');
+        // return view('home');
+    }
+    public function logout()
+    {
+        if(session()->has('user_id'))
+        {
+            session()->pull('user_id');
+            return redirect('login');
+        }
+    }
 
 } 

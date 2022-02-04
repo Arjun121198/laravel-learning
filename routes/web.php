@@ -25,6 +25,9 @@ Route::get('/user', [FormController::class, 'user']);
 Route::get('/delete/{id}', [FormController::class, 'delete']);
 Route::get('/edit/{id}', [FormController::class, 'showdata']);
 Route::post('/edit', [FormController::class, 'update']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+
 
 
 

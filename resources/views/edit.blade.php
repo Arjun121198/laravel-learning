@@ -8,7 +8,7 @@
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        <h1 class="h2">User Details Form</h1>
+                        <h1 class="h2">User Details Form </h1>
                         </div>
 
                     <div class="card">

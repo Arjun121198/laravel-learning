@@ -42,6 +42,11 @@
 						<a class="sidebar-link" href="user">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">User</span>
             </a>
+								<li class="sidebar-item">
+						<a class="sidebar-link" href="logout">
+              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Logout</span>
+            </a>
+
 					</li>
 
 					<li class="sidebar-header">
