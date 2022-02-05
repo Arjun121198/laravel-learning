@@ -13,7 +13,7 @@ use App\Http\Controllers\FormController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/userin', [FormController::class, 'config']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/registeruser', [AuthController::class, 'registeruser']);
 Route::get('/login', [AuthController::class, 'login']);

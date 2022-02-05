@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Config;
 
 class FormController extends Controller
 {
@@ -53,4 +54,10 @@ class FormController extends Controller
         return redirect('user');
     }  
 
+    public function config()
+    {
+        $data = Config('app.name1');
+        return view('userin',compact('data'));
+
+    }
 }
