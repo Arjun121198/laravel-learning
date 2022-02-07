@@ -18,7 +18,7 @@ class AuthCheck
     {
         if(!session()->has('user_id'))
         {
-         return redirect('login')->with('fail','you must be logged in');   
+         return redirect('login')->with('fail','you must be logged in');  
         }
         return $next($request);
 

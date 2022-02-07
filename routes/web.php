@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\MemberController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,7 @@ use App\Http\Controllers\FormController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/userin', [FormController::class, 'config']);
+Route::get('/userin ', [FormController::class, 'config']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/registeruser', [AuthController::class, 'registeruser']);
 Route::get('/login', [AuthController::class, 'login']);
@@ -28,6 +30,8 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/edit/{id}', [FormController::class, 'showdata']);
     Route::post('/edit', [FormController::class, 'update']);    
 });
+Route::get('/data', [MemberController::class, 'index']);
+
 
 
 
