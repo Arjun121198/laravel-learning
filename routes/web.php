@@ -32,7 +32,6 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/delete/{id}', [FormController::class, 'delete']);
     Route::get('/edit/{id}', [FormController::class, 'showdata']);
     Route::post('/edit', [FormController::class, 'update']); 
-    Route::get('/my-demo-mail', [AuthController::class, 'myDemoMail']);   
 });
 Route::get('/data', [MemberController::class, 'index']);
 

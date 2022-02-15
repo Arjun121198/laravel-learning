@@ -36,21 +36,15 @@ class AuthController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password'])
         ]);
-        $request->session()->put('user_id',$user->id);
-        return redirect('/my-demo-mail')->with('success','Registered Successfully');
-    }
-    public function myDemoMail()
-    {
-        $myEmail = 'arjun@mailinator.com';
-   
+
         $details = [
             'title' => 'First  mail',
             'url' => 'https://www.itsolutionstuff.com'
         ];
   
-        Mail::to($myEmail)->send(new MyDemoMail($details));
-   
-        dd("Mail Send Successfully");
+        Mail::to($user->email)->send(new MyDemoMail($details));
+        $request->session()->put('user_id',$user->id);
+        return redirect('/my-demo-mail')->with('success','Registered Successfully');
     }
 
     public function loginuser(Request $request)
