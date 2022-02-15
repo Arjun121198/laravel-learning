@@ -23,6 +23,20 @@ class AuthController extends Controller
     {
         return view('login');
     }    
+    public function home()
+    {
+        return view('home');
+    }
+    public function reset()
+    {
+        return view('resetpwd');
+    }
+    public function opennewpassword($id)
+    {
+        
+     return view('/createnewpassword',compact('id'));
+    }
+
 
     public function registeruser(Request $request)
     {
@@ -39,12 +53,12 @@ class AuthController extends Controller
 
         $details = [
             'title' => 'First  mail',
-            'url' => 'https://www.itsolutionstuff.com'
+            'url' => 'http://localhost:8000/home'
         ];
   
         Mail::to($user->email)->send(new MyDemoMail($details));
         $request->session()->put('user_id',$user->id);
-        return redirect('/my-demo-mail')->with('success','Registered Successfully');
+        return redirect('/register')->with('success','Registered Successfully');
     }
 
     public function loginuser(Request $request)
@@ -73,10 +87,40 @@ class AuthController extends Controller
         
     }
 
-    public function home()
+    public function search(Request $request)
     {
-        return view('home');
-    }
+        
+        $user = Register::where('email',$request->email)->first();
+       if($user)
+       {
+        $details = [
+            'title' => 'First  mail',
+            'url' => 'http://localhost:8000/opennewpassword/'.$user->id,
+        ];
+        Mail::to($user->email)->send(new MyDemoMail($details));
+       }
+       else
+       {
+           return view('/register')->with('fail','account not found pls register');
+       }
+       }
+       public function createpasswordnew(Request $request)
+        {
+        if($request->password == $request->newpassword)
+        {
+            
+            $user = Register::where('id',$request->id)->first();
+            
+            $user->password = Hash::make($request->password);
+            $user->save();
+        return view('login');
+        }
+        else
+        {
+            return back()->with('fail','password is incorrect');
+        }
+       }
+
     public function logout()
     {
         // dd(Session::get('user_id'));
@@ -90,3 +134,8 @@ class AuthController extends Controller
     }
 
 }              
+
+
+
+
+
