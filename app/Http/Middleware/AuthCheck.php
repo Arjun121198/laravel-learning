@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Mail\MailNotify;
+use Illuminate\Support\Facades\Mail;
+
 
 class AuthCheck
 {

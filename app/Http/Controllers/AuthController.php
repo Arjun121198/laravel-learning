@@ -8,6 +8,11 @@ use Auth;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyDemoMail;
+use App\Mail\MailNotify;
+
+
 class AuthController extends Controller
 {
     public function register()
@@ -32,8 +37,22 @@ class AuthController extends Controller
             'password' => Hash::make($request['password'])
         ]);
         $request->session()->put('user_id',$user->id);
-        return redirect('/home')->with('success','Registered Successfully');
+        return redirect('/my-demo-mail')->with('success','Registered Successfully');
     }
+    public function myDemoMail()
+    {
+        $myEmail = 'arjun@mailinator.com';
+   
+        $details = [
+            'title' => 'First  mail',
+            'url' => 'https://www.itsolutionstuff.com'
+        ];
+  
+        Mail::to($myEmail)->send(new MyDemoMail($details));
+   
+        dd("Mail Send Successfully");
+    }
+
     public function loginuser(Request $request)
     {
       $this->validate($request,[

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\MemberController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,8 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/user', [FormController::class, 'user']);
     Route::get('/delete/{id}', [FormController::class, 'delete']);
     Route::get('/edit/{id}', [FormController::class, 'showdata']);
-    Route::post('/edit', [FormController::class, 'update']);    
+    Route::post('/edit', [FormController::class, 'update']); 
+    Route::get('/my-demo-mail', [AuthController::class, 'myDemoMail']);   
 });
 Route::get('/data', [MemberController::class, 'index']);
 
