@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Mail\MyDemoMail;
 use App\Mail\MailNotify;
 
@@ -38,13 +40,8 @@ class AuthController extends Controller
     }
 
 
-    public function registeruser(Request $request)
+    public function registeruser(RegisterRequest $request)
     {
-        $this->validate($request,[
-             'name' => 'required',
-            'email' => 'required|email|unique:registers',
-            'password' => 'required|alphaNum|min:5|max:12'
-        ]);
        $user = Register::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -58,17 +55,11 @@ class AuthController extends Controller
   
         Mail::to($user->email)->send(new MyDemoMail($details));
         $request->session()->put('user_id',$user->id);
-        return redirect('/register')->with('success','Registered Successfully');
+        return redirect('/login')->with('success','Registered Successfully');
     }
 
-    public function loginuser(Request $request)
+    public function loginuser(LoginRequest $request)
     {
-      $this->validate($request,[
-          'email' => 'required|email',
-          'password' => 'required|alphaNum|min:5|max:12'
-
-      ]);
-
       $user = Register::where('email',$request->email)->first();
        if(!$user)
       {
@@ -123,12 +114,9 @@ class AuthController extends Controller
 
     public function logout()
     {
-        // dd(Session::get('user_id'));
         if(session()->has('user_id'))
         {
-            // dd(Session::get('user_id'));
             session()->pull('user_id');
-            // dd(Session::get('user_id'));
             return redirect('login');
         }
     }
