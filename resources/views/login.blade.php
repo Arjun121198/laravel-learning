@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title','login')
 @section('content')
-<form action="loginuser" autocomplete="off" method="post">
+<form action="loginuser" autocomplete="off" method="post" id="myForm">
   @csrf
   @if(Session::get('fail'))
 <div class="alert alert-danger">
@@ -98,3 +98,43 @@
 
 </script>  
 @endsection 
+
+@section('scripts')
+<script>
+  $("#myForm").submit(function(e)
+  {
+    var email = $("#email").val();
+    var password = $("#password").val();
+    if(email == "" && password == "")
+    {
+      $("#email").css("border-color",'red');
+      $("#password").css("border-color",'red');
+      e.preventDefault();
+    }
+    else
+    {
+      $("#email").css("border-color",'unset');
+      $("#password").css("border-color",'unset');
+    }
+    if(email == null || email == "")
+    {
+      $("#email").css("border-color",'red');
+      e.preventDefault();
+    }
+    else
+    {
+      $("#email").css("border-color",'unset');
+    }
+    if(password ==null || password == "")
+    {
+      $("#password").css("border-color",'red');
+      e.preventDefault();
+    }
+    else
+    {
+      $("#password").css("border-color",'unset');
+    }
+
+  });
+</script>  
+@endsection
