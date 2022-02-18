@@ -51,7 +51,7 @@
                                         <div id="nameHelp" class="form-text"></div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-lg btn-primary">Sumbit</button>
                                     </div>
                                 </form>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Config;
 
 class FormController extends Controller
@@ -11,7 +12,7 @@ class FormController extends Controller
     {
         return view('form');
     }
-    public function formin(Request $request)
+    public function formin(UserRequest $request)
     {   
          Customer::create([
             'name' => $request['name'],
@@ -21,8 +22,12 @@ class FormController extends Controller
             'email' => $request['email'],
             'home_address' => $request['home_address']
         ]);
-        return view('home');
-    }
+        return response()->json([
+         'success'=>true,
+         'message'=>'Insert data successfully'
+        ]
+        );
+      }
     public function user()
     {
         $cruds = Customer::all();  

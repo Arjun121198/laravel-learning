@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
-
 	<link href="{{asset('css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -23,5 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     @yield('scripts')
+    @yield('styles')
+
 </body>
 </html> 
