@@ -8,13 +8,11 @@ use Config;
 
 class FormController extends Controller
 {
-    public function form()
-    {
-        return view('form');
-    }
-    public function formin(UserRequest $request)
+    /*this function is 
+      used to create user details*/
+    public function create(UserRequest $request)
     {   
-         Customer::create([
+        Customer::create([
             'name' => $request['name'],
             'father_name' => $request['father_name'],
             'mother_name' => $request['mother_name'],
@@ -22,30 +20,32 @@ class FormController extends Controller
             'email' => $request['email'],
             'home_address' => $request['home_address']
         ]);
-        return response()->json([
-         'success'=>true,
-         'message'=>'Insert data successfully'
-        ]
-        );
+        return response()->json(['message'=>'user details','status'=>true]);
       }
-    public function user()
+      public function form()
+        {
+          return view('form');
+        }
+        
+        public function user()
     {
         $cruds = Customer::all();  
+        
         return view('user',compact('cruds'));  
-
     }
+    
     public function delete($id)  
     {  
       $data = Customer::find($id);
       $data->delete();
       return redirect('user');
     }  
+
     public function showdata($id)  
     {  
         $data = Customer::find($id);
         return view('edit',['data'=>$data]);
     }  
-
     public function update(Request $request)  
     {  
         $data = Customer::find($request->id);
@@ -58,11 +58,9 @@ class FormController extends Controller
         $data->save();
         return redirect('user');
     }  
-
     public function config()
     {
         $data = Config('app.name1');
         return view('userin',compact('data'));
-
     }
 }

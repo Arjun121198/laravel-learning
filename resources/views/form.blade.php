@@ -80,7 +80,6 @@
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 0.1s linear infinite;
 }
-
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -107,7 +106,7 @@ $("#submit").click(function(e)
     var phone = $("#phone").val();                
     var email = $("#email").val();
     var home_address = $("#home_address").val();
-    var url = "{{ url('/')}}/formin";
+    var url = "{{ url('/')}}/create-customer";
        
     if(name == "" && father_name == "" && mother_name == "" && phone == "" && email == "" && home_address == "") 
     {
