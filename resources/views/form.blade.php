@@ -223,11 +223,18 @@ $("#submit").click(function(e)
         },
         success:function(response)
         {
-         window.location = "{{ url('/')}}/user";
-         $(document).ready(function(){
+        window.location = "{{ url('/')}}/user";
+        $(document).ready(function(){
         $(".loader").hide();
         });
         },
+        error: function (error)
+        {
+        $(document).ready(function(){
+        $(".loader").hide();
+        });
+         },
+
     });
 
 });
