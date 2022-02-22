@@ -18,9 +18,12 @@
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
                                         <input class="form-control form-control-lg" type="text" name="name" id="name" placeholder="Enter your name" />
-                                        <span class="text-danger">@error('name'){{ $message }} @enderror</span>
+                                        
                                         <div id="nameHelp" class="form-text"></div>
                                     </div>
+                                    @error('name')
+                        <span style="color:red">{{$message}}</span>
+                        @enderror
                                     <div class="mb-3">
                                         <label class="form-label">Father Name</label>
                                         <input class="form-control form-control-lg" type="text" name="father_name" id="father_name" placeholder="Enter your Father name" />
@@ -43,9 +46,12 @@
                                     <div class="mb-3">
                                         <label class="form-label">Email Address</label>
                                         <input class="form-control form-control-lg" type="email" name="email" id="email" placeholder="Enter your email" />
-                                        <span class="text-danger">@error('email'){{ $message }} @enderror</span>
+                                        <span class="text-danger">
                                         <div id="nameHelp" class="form-text">We'll never share your email with anyone else.</div>
                                     </div>
+                                    @error('email')
+                        <span style="color:red">{{$message}}</span>
+                        @enderror
                                     <div class="mb-3">
                                         <label class="form-label">Home Address</label>
                                         <input class="form-control form-control-lg" type="text" name="home_address" id="home_address" placeholder="Enter your Address" />

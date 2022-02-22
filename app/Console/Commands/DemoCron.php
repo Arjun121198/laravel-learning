@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Console\Commands;
-
+use App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewDemoMail;
 use Illuminate\Console\Command;
 
 class DemoCron extends Command
@@ -18,7 +20,7 @@ class DemoCron extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'daily';
 
     /**
      * Create a new command instance.
@@ -37,6 +39,12 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        return 0;
+        $users = Customer::all();
+        foreach($users as $user){
+            $email = $user->email;
+          Mail::to($email)->send(new NewDemoMail($users));
+        }
+        
     }
 }
+ 

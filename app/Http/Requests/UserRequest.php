@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'name' => 'required|min:5',
             'father_name' => 'required',
             'mother_name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|integer',
             'email' => 'required|email|unique:customers',
             'home_address' => 'required'
         ];
