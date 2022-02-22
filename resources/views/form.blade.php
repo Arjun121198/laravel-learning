@@ -33,8 +33,7 @@
                                         <span class="text-danger">@error('mother_name'){{ $message }} @enderror</span>
                                         <div id="nameHelp" class="form-text"></div>
                                     </div>
-                                    <div class="loader"></div>
-
+                                    <div class="loader" id="center"></div>
                                     <div class="mb-3">
                                         <label class="form-label">Phone Number</label>
                                         <input class="form-control form-control-lg" type="tel" name="phone" id="phone" placeholder="Enter your name" />
@@ -56,7 +55,6 @@
                                     <div class="text-center mt-3">
                                         <button type="button" id="submit" class="btn btn-lg btn-primary">Add</button>
                                     </div>
-
                                 </form>
                             </div>
                         </div>
@@ -69,16 +67,19 @@
 @endsection
 @section('styles')
 <style>
+  #center {
+  margin: auto;
+  padding: 10px;
+   }
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 50px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 0.2s linear infinite;
+  animation: spin 0.1s linear infinite;
 }
-
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -105,7 +106,7 @@ $("#submit").click(function(e)
     var phone = $("#phone").val();                
     var email = $("#email").val();
     var home_address = $("#home_address").val();
-    var url = "{{ url('/')}}/formin";
+    var url = "{{ url('/')}}/create-customer";
        
     if(name == "" && father_name == "" && mother_name == "" && phone == "" && email == "" && home_address == "") 
     {
