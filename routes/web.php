@@ -31,6 +31,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/user', [FormController::class, 'user']);
     Route::get('/delete/{id}', [FormController::class, 'delete']);
     Route::get('/edit/{id}', [FormController::class, 'showdata']);
+    Route::post('/verify', [FormController::class, 'verify']); 
     Route::post('/edit', [FormController::class, 'update']); 
 });
 Route::get('/data', [MemberController::class, 'index']);

@@ -29,6 +29,11 @@ class AuthController extends Controller
     {
         return view('home');
     }
+    public function verify()
+    {
+        return view('verify');
+    }
+
     public function reset()
     {
         return view('resetpwd');
@@ -89,7 +94,8 @@ class AuthController extends Controller
             'url' => 'http://localhost:8000/opennewpassword/'.$user->id,
         ];
         Mail::to($user->email)->send(new MyDemoMail($details));
-       }
+       return view('verify');
+    }
        else
        {
            return view('/register')->with('fail','account not found pls register');
