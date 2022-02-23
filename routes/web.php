@@ -39,6 +39,7 @@ Route::get('/resetpwd', [AuthController::class, 'reset']);
 Route::post('/search', [AuthController::class, 'search']);
 Route::get('/opennewpassword/{id}', [AuthController::class, 'opennewpassword']);
 Route::post('/createpasswordnew', [AuthController::class, 'createpasswordnew']);
+Route::get('/email', [FormController::class,'sendEmail']);
 
 
 

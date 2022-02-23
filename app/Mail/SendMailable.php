@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Mail;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewDemoMail extends Mailable
+class SendMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -15,9 +16,9 @@ class NewDemoMail extends Mailable
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct()
     {
-        $this->users = $users;
+        //
     }
 
     /**
@@ -27,7 +28,6 @@ class NewDemoMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.newDemoMail')
-                    ->with('users',$this->users);
+        return $this->markdown('emails.newDemoMail');
     }
 }

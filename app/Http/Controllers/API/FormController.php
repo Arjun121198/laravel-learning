@@ -5,6 +5,8 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Config;
+use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendEmailJob;
 
 class FormController extends Controller
 {
@@ -21,7 +23,18 @@ class FormController extends Controller
             'home_address' => $request['home_address']
         ]);
         return response()->json(['message'=>'user details','status'=>true]);
+        
       }
+      public function sendEmail()
+      {
+        $users = Customer::all();
+        foreach($users as $user){
+            $email = $user->email;
+            $job = new SendEmailJob($email);
+          dispatch($job);
+        }
+      }
+  
       public function form()
         {
           return view('form');
